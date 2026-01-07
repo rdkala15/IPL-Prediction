@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffcc00, #0078d7);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+
+.app-container {
+  background: rgba(255, 255, 255, 0.2);
+  border: 3px solid #ffcc00;
+  border-radius: 25px;
+  box-shadow: 0 0 25px rgba(255, 223, 0, 0.9);
+  width: 90%;
+  max-width: 1300px;
+  padding: 40px 60px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #002b80;
+  text-shadow: 2px 2px #ffcc00;
+}
+
+.tagline {
+  font-weight: 600;
+  color: #004aad;
+  margin-bottom: 20px;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input, select {
+  width: 60%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #004aad;
+  font-size: 1em;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #ffcc00;
+  box-shadow: 0 0 10px #ffcc00;
+  outline: none;
+}
+
+button.predict-btn {
+  background: #004aad;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 12px;
+  font-size: 1.1em;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+button.predict-btn:hover {
+  background: #ffcc00;
+  color: #002b80;
+  box-shadow: 0 0 15px #ffcc00;
+}
+
+.result-box {
+  margin-top: 30px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  box-shadow: 0 0 15px #004aad;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  margin-top: 40px;
+  font-weight: 600;
+  color: #004aad;
+}

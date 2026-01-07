@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSK Player Performance Predictor 🏏</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app-container">
+    <h1>💛 Chennai Super Kings Performance Predictor 💙</h1>
+    <p class="tagline">Predict Runs or Wickets with IPL stats ⚡</p>
+
+    <form method="POST" class="form-box">
+        <label for="mode">Select Prediction Mode:</label>
+        <select name="mode" id="mode" required>
+            <option value="batting" {% if mode == 'batting' %}selected{% endif %}>Predict Runs (Batting)</option>
+            <option value="bowling" {% if mode == 'bowling' %}selected{% endif %}>Predict Wickets (Bowling)</option>
+        </select>
+
+        <div id="batting-fields" class="fields {% if mode != 'batting' %}hidden{% endif %}">
+            <input type="number" name="Matches_Batted" placeholder="Matches Batted" step="any" required>
+            <input type="number" name="Not_Outs" placeholder="Not Outs" step="any" required>
+            <input type="number" name="Balls_Faced" placeholder="Balls Faced" step="any" required>
+            <input type="number" name="Batting_Strike_Rate" placeholder="Batting Strike Rate" step="any" required>
+            <input type="number" name="Centuries" placeholder="Centuries" step="any" required>
+            <input type="number" name="Half_Centuries" placeholder="Half Centuries" step="any" required>
+            <input type="number" name="Fours" placeholder="Fours" step="any" required>
+            <input type="number" name="Sixes" placeholder="Sixes" step="any" required>
+        </div>
+
+        <div id="bowling-fields" class="fields {% if mode != 'bowling' %}hidden{% endif %}">
+            <input type="number" name="Matches_Bowled" placeholder="Matches Bowled" step="any" required>
+            <input type="number" name="Balls_Bowled" placeholder="Balls Bowled" step="any" required>
+            <input type="number" name="Runs_Conceded" placeholder="Runs Conceded" step="any" required>
+            <input type="number" name="Bowling_Average" placeholder="Bowling Average" step="any" required>
+            <input type="number" name="Economy_Rate" placeholder="Economy Rate" step="any" required>
+            <input type="number" name="Bowling_Strike_Rate" placeholder="Bowling Strike Rate" step="any" required>
+            <input type="number" name="Four_Wicket_Hauls" placeholder="Four Wicket Hauls" step="any" required>
+            <input type="number" name="Five_Wicket_Hauls" placeholder="Five Wicket Hauls" step="any" required>
+        </div>
+
+        <button type="submit" class="predict-btn">🚀 Predict Now</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result-box">
+        {% if mode == 'batting' %}
+        <h2>🏏 Predicted Runs: <span>{{ prediction }}</span></h2>
+        {% else %}
+        <h2>🎯 Predicted Wickets: <span>{{ prediction }}</span></h2>
+        {% endif %}
+        <audio autoplay>
+            <source src="{{ url_for('static', filename='csk_cheer.mp3') }}" type="audio/mpeg">
+        </audio>
+    </div>
+    {% endif %}
+
+    <footer>
+        <p>💛 CSK Never Dies 💙</p>
+    </footer>
+</div>
+
+<script>
+    const modeSelect = document.getElementById('mode');
+    const battingFields = document.getElementById('batting-fields');
+    const bowlingFields = document.getElementById('bowling-fields');
+    modeSelect.addEventListener('change', () => {
+        battingFields.classList.toggle('hidden', modeSelect.value !== 'batting');
+        bowlingFields.classList.toggle('hidden', modeSelect.value !== 'bowling');
+    });
+</script>
+</body>
+</html>
